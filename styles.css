@@ -1,0 +1,12 @@
+.city-item .btn-delete-city {
+    margin-left: auto;
+    opacity: 0;
+    transition: all .2s;
+    float: right;
+    padding: 1px 6px;
+}
+
+.city-item:hover .btn-delete-city {
+    opacity: 1;
+    
+}

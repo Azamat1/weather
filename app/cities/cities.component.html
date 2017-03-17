@@ -1,0 +1,2 @@
+<cities-form (onCreateCity)='createCity($event)'></cities-form>
+<cities-list [cities]='cities' (onDelete)='deleteCity($event)' (onClick)='getCityWeather($event)'></cities-list>

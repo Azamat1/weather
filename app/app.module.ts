@@ -6,7 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CitiesFormComponent,
          CitiesListComponent, 
-         CitiesItemComponent } from './cities/index';
+         CitiesItemComponent,
+         CitiesComponent } from './cities/index';
 import { CitiesService } from './shared/index';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CitiesService } from './shared/index';
         AppComponent,
         CitiesFormComponent,
         CitiesListComponent,
-        CitiesItemComponent
+        CitiesItemComponent,
+        CitiesComponent
         ],
     bootstrap: [AppComponent],
     providers: [CitiesService]

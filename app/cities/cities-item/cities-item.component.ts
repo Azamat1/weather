@@ -9,9 +9,14 @@ import { City } from '../../shared/index';
 })
 export class CitiesItemComponent {
     @Input() city: City;
-    
     @Output() onDelete = new EventEmitter<City>();
+    @Output() onClick = new EventEmitter<City>();
+    
     delete() {
         this.onDelete.emit(this.city);
+    }
+
+    click() {
+        this.onClick.emit(this.city);
     }
 }

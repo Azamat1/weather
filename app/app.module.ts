@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { CitiesFormComponent,
+         CitiesListComponent, 
+         CitiesItemComponent } from './cities/index';
+import { CitiesService } from './shared/index';
 
 @NgModule({
     imports: [
@@ -12,9 +16,12 @@ import { AppComponent } from './app.component';
      HttpModule
      ],
     declarations: [
-        AppComponent
+        AppComponent,
+        CitiesFormComponent,
+        CitiesListComponent,
+        CitiesItemComponent
         ],
-    providers: [TodoService],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [CitiesService]
 })
 export class AppModule {}

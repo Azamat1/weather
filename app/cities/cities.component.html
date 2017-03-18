@@ -1,2 +1,16 @@
-<cities-form (onCreateCity)='createCity($event)'></cities-form>
-<cities-list [cities]='cities' (onDelete)='deleteCity($event)' (onClick)='getCityWeather($event)'></cities-list>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Выберите город:</h1>
+            <div [style.visibility]="message.text ? 'visible' : 'hidden'" class='alert alert-info alert-dismissable'>
+                <a href="#" class="close" aria-label="close" (click)="clearMessage()">&times;</a>
+                {{ message.text }}
+             </div>
+            <cities-form (onCreateCity)='createCity($event)'></cities-form>
+            <cities-list [cities]='cities' (onDelete)='deleteCity($event)' (onCityClick)='showCityWeather($event)'></cities-list>
+        </div>
+        <div class="col-sm-6">
+            <cities-weather [city]='currentCity'></cities-weather>
+        </div>
+    </div>
+</div>

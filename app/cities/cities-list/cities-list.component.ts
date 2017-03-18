@@ -10,13 +10,13 @@ import { City } from '../../shared/index';
 export class CitiesListComponent {
     @Input() cities: City[] =[];
     @Output() onDelete: EventEmitter<City> = new EventEmitter();
-    @Output() onClick: EventEmitter<City> = new EventEmitter();
+    @Output() onCityClick: EventEmitter<City> = new EventEmitter();
 
     delete(city: City) {
         this.onDelete.emit(city);
     }
 
-    click(city: City) {
-        this.onClick.emit(city);
+    cityClick(city: City) {
+        this.onCityClick.emit(city);
     }
 }

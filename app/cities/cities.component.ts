@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CitiesService, City } from '../shared/index';
+import { CitiesService, City, Message } from '../shared/index';
 
 @Component({
     moduleId: module.id,
@@ -10,11 +10,18 @@ import { CitiesService, City } from '../shared/index';
 
 export class CitiesComponent {
     cities: City[];
+    currentCity: City = new City("Город не выбран");
+    message: Message;
 
     constructor(private citiesService: CitiesService){};
 
     ngOnInit(){
         this.cities = this.citiesService.getCities();
+        this.message = this.citiesService.infoMessage;
+    }
+
+    clearMessage() {
+        this.message.text ='';
     }
 
     createCity(name: string) {
@@ -25,7 +32,7 @@ export class CitiesComponent {
         this.citiesService.deleteCity(city);
     }
 
-    /*getCityWeather(city: City) {
-        this.citiesService.
-    }*/  
+    showCityWeather(city: City) {
+        this.currentCity = city;
+    }  
 }

@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { CitiesFormComponent,
          CitiesListComponent, 
          CitiesItemComponent,
-         CitiesComponent } from './cities/index';
+         CitiesComponent,
+         CitiesWeatherComponent} from './cities/index';
 import { CitiesService } from './shared/index';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CitiesService } from './shared/index';
         CitiesFormComponent,
         CitiesListComponent,
         CitiesItemComponent,
-        CitiesComponent
+        CitiesComponent,
+        CitiesWeatherComponent
         ],
     bootstrap: [AppComponent],
     providers: [CitiesService]

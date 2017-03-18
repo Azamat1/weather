@@ -1,0 +1,27 @@
+<div class='weather-container well'>
+    <h2>{{ city.name }}</h2>
+    <table class='table table-hover'>
+        <tbody>
+            <tr *ngIf='city.temperature'>
+                <td>Температура</td>
+                <td>{{ city.temperature }} °С</td>
+            </tr>
+            <tr *ngIf='city.pressure'>
+                <td>Давление</td>
+                <td>{{ city.pressure }} гПа</td>
+            </tr>
+            <tr *ngIf='city.windSpeed'>
+                <td>Скорость ветра</td>
+                <td>{{ city.windSpeed }} м/с</td>
+            </tr>
+            <tr *ngIf='city.humidity'>
+                <td>Влажность</td>
+                <td>{{ city.humidity }} %</td>
+            </tr>
+            <tr *ngIf='city.visibility'>
+                <td>Видимость</td>
+                <td>{{ city.visibility }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -99,7 +99,10 @@ export class CitiesService {
     }
 
     private retreiveCities() {
-      this.cities = this.storage.retrieve('cities');
+      let cities: any = this.storage.retrieve('cities');
+      if (cities == null)
+        return;
+      this.cities = cities;
       console.log('retreiveCities' + this.cities.length);
     }
 

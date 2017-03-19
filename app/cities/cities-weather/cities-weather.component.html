@@ -1,26 +1,31 @@
-<div class='weather-container well'>
-    <h2>{{ city.name }}</h2>
+<div *ngIf='city' class='weather-container well'>
     <table class='table table-hover'>
+        <thead>
+            <tr>
+                <th><h2>{{ city.name }}</h2></th>
+                <th><h4>{{ getLocalizeDate() }}</h4></th>
+            </tr>
+        </thead>
         <tbody>
-            <tr *ngIf='city.temperature'>
+            <tr *ngIf='city.temperature != null'>
                 <td>Температура</td>
                 <td>{{ city.temperature }} °С</td>
             </tr>
-            <tr *ngIf='city.pressure'>
+            <tr *ngIf='city.pressure != null'>
                 <td>Давление</td>
                 <td>{{ city.pressure }} гПа</td>
             </tr>
-            <tr *ngIf='city.windSpeed'>
+            <tr *ngIf='city.windSpeed != null'>
                 <td>Скорость ветра</td>
                 <td>{{ city.windSpeed }} м/с</td>
             </tr>
-            <tr *ngIf='city.humidity'>
+            <tr *ngIf='city.humidity != null'>
                 <td>Влажность</td>
                 <td>{{ city.humidity }} %</td>
             </tr>
-            <tr *ngIf='city.visibility'>
+            <tr *ngIf='city.visibility != null'>
                 <td>Видимость</td>
-                <td>{{ city.visibility }}</td>
+                <td>{{ city.visibility }} м</td>
             </tr>
         </tbody>
     </table>

@@ -16,6 +16,4 @@ export class CitiesFormComponent {
         console.log('adding city'+ this.cityName);
         this.onCreateCity.emit(this.cityName);
     }
-
-
 }

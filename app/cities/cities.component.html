@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-6">
             <h1>Выберите город:</h1>
-            <div [style.visibility]="message.text ? 'visible' : 'hidden'" class='alert alert-info alert-dismissable'>
+            <div [style.visibility]="message.text !== 'Nothing' ? 'visible' : 'hidden'" class='alert alert-info alert-dismissable'>
                 <a href="#" class="close" aria-label="close" (click)="clearMessage()">&times;</a>
                 {{ message.text }}
              </div>

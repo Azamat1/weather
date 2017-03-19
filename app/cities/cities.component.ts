@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CitiesService, City, Message } from '../shared/index';
+import { CitiesService, City, Message} from '../shared/index';
 
 @Component({
     moduleId: module.id,
@@ -10,22 +10,39 @@ import { CitiesService, City, Message } from '../shared/index';
 
 export class CitiesComponent {
     cities: City[];
-    currentCity: City = new City("Город не выбран");
-    message: Message;
+    currentCity: City;
+    private message: Message;
 
     constructor(private citiesService: CitiesService){};
 
     ngOnInit(){
         this.cities = this.citiesService.getCities();
         this.message = this.citiesService.infoMessage;
+        this.getCityByLocation();
     }
 
+    location: any = {};
+
+    private setPosition(position: any){
+      this.location = position.coords;
+      console.log(position.coords);
+      console.log(position.coords.latitude);
+       console.log(position.coords.longitude);
+       this.citiesService.getWeatherByLocation(this.location.latitude, this.location.longitude);
+    }
+    
+    getCityByLocation() {
+        if(!navigator.geolocation)
+            return;
+        navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+   }
+
     clearMessage() {
-        this.message.text ='';
+        this.message.text ='Nothing';
     }
 
     createCity(name: string) {
-        this.citiesService.addCity(name);
+        this.citiesService.getWeatherByCity(new City(name), true);
     }
 
     deleteCity(city: City) {
@@ -33,6 +50,7 @@ export class CitiesComponent {
     }
 
     showCityWeather(city: City) {
+        this.citiesService.getWeatherByCity(city, false);
         this.currentCity = city;
     }  
 }

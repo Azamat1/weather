@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { City } from '../../shared/index';
 
 @Component({
@@ -9,4 +9,17 @@ import { City } from '../../shared/index';
 })
 export class CitiesWeatherComponent {
     @Input() city: City;
+
+    getLocalizeDate(): string {
+        let localizedDate: string =  this.city.lastUpdate.toLocaleString('ru', {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: 'numeric',
+                minute: 'numeric'
+            }) ;
+        console.log(localizedDate);
+        return localizedDate;
+    } 
 }

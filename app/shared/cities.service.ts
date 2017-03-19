@@ -16,6 +16,7 @@ export class CitiesService {
 
     private apiUrl: string = 'http://api.openweathermap.org/data/2.5/weather?';
     private apiKey: string = '&units=metric&APPID=042ec5253c5c9129b2813c2080b50f31';
+    private iconUrl: string = 'http://www.openweathermap.org/img/w/';
 
     infoMessage: Message = new Message('Nothing');
 
@@ -59,12 +60,17 @@ export class CitiesService {
     }
 
     private extractWeatherData(city: City, data: any) {
+        let dataDate = new Date(data.dt * 1000);
+        if (city.lastUpdate === dataDate)
+            return;
+
         city.temperature = data.main.temp;
         city.humidity = data.main.humidity;
         city.pressure = data.main.pressure;
         city.visibility = data.visibility;
         city.windSpeed = data.wind.speed;
-        city.lastUpdate = new Date(data.dt * 1000);
+        city.iconLocation = this.iconUrl + data.weather[0].icon + '.png';
+        city.lastUpdate = dataDate;
         this.saveCityInStorage(city);
     }
 

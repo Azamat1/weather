@@ -13,7 +13,6 @@ export class CitiesFormComponent {
     @Output() onCreateCity = new EventEmitter<string>();
     
     createCity() {
-        console.log('adding city'+ this.cityName);
         this.onCreateCity.emit(this.cityName);
     }
 }

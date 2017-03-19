@@ -19,21 +19,21 @@ export class CitiesService {
     private apiKey: string = '&units=metric&APPID=042ec5253c5c9129b2813c2080b50f31';
     private iconUrl: string = 'http://www.openweathermap.org/img/w/';
 
-    infoMessage: Message = new Message('Nothing');
+    infoMessage: Message;
 
     getCities(): City[] {
+        this.infoMessage = new Message('Nothing');
         this.retreiveCities();
         return this.cities;
     }
 
     getWeatherByLocation(latitude: string, longitude: string) {
-        console.log('by loc')
         this.http.get(this.apiUrl + 'lat=' + latitude + '&lon=' + longitude + this.apiKey)
                         .subscribe( res => {
                             let data = res.json();
                             let city = new City(data.name);
                             this.extractWeatherData(city, data);
-                        }, this.handleError);   
+                        }, this.handleError.bind(this));   
     }
 
     getWeatherByCity(city: City, isNewCity: boolean) {
@@ -49,7 +49,7 @@ export class CitiesService {
                             } else {
                                 this.infoMessage.text = 'Город с таким именем не найден!';
                             }
-                        }, this.handleError);
+                        }, this.handleError.bind(this));
                            
     }
 
@@ -95,7 +95,6 @@ export class CitiesService {
 
     private saveCities() {
         this.storage.store('cities', this.cities);
-        console.log('saveCities' + this.cities.length);
     }
 
     private retreiveCities() {
@@ -103,10 +102,10 @@ export class CitiesService {
       if (cities == null)
         return;
       this.cities = cities;
-      console.log('retreiveCities' + this.cities.length);
     }
 
     private handleError(error: any)  {
+        console.log('handle eror method');
         this.infoMessage.text = error.mesage || error;
         console.error('Произошла ошибка', error.mesage || error);
     }

@@ -25,9 +25,6 @@ export class CitiesComponent {
 
     private setPosition(position: any){
       this.location = position.coords;
-      console.log(position.coords);
-      console.log(position.coords.latitude);
-       console.log(position.coords.longitude);
        this.citiesService.getWeatherByLocation(this.location.latitude, this.location.longitude);
     }
     

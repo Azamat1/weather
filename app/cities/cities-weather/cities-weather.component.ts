@@ -19,7 +19,6 @@ export class CitiesWeatherComponent {
                 hour: 'numeric',
                 minute: 'numeric'
             }) ;
-        console.log(localizedDate);
         return localizedDate;
     } 
 }

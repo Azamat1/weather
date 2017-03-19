@@ -9,8 +9,9 @@ import { CitiesFormComponent,
          CitiesListComponent, 
          CitiesItemComponent,
          CitiesComponent,
-         CitiesWeatherComponent} from './cities/index';
-import { CitiesService} from './shared/index';
+         CitiesWeatherComponent,
+         } from './cities/index';
+import { CitiesService, TransliterationService} from './shared/index';
 
 @NgModule({
     imports: [
@@ -28,6 +29,6 @@ import { CitiesService} from './shared/index';
         CitiesWeatherComponent
         ],
     bootstrap: [AppComponent],
-    providers: [CitiesService]
+    providers: [CitiesService, TransliterationService]
 })
 export class AppModule {}

@@ -1,8 +1,9 @@
 import { City, Message } from './index';
+import { TransliterationService } from './transliteration.service';
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { Injectable, OnInit, OnDestroy } from '@angular/core';
-import {LocalStorageService} from 'ng2-webstorage';
+import { LocalStorageService } from 'ng2-webstorage';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,7 +11,7 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class CitiesService {
-    constructor(private http: Http, private storage:LocalStorageService){ }
+    constructor(private translit: TransliterationService, private http: Http, private storage:LocalStorageService){ }
 
     private cities: City[] = [];
 
@@ -36,6 +37,8 @@ export class CitiesService {
     }
 
     getWeatherByCity(city: City, isNewCity: boolean) {
+        if (isNewCity && this.translit.isCyrillic(city.name))
+            city.name = this.translit.transliterate(city.name);
         return this.http.get(this.apiUrl + 'q=' + city.name + this.apiKey)
                         .subscribe( res => {
                             let data = res.json();
